@@ -1,0 +1,190 @@
+/* © Microsoft Corporation. All rights reserved. */
+
+body,
+html,
+.Root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.ui-provider {
+  height: 0;
+}
+
+/*.css-142 {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 400;
+}*/
+.ui-chat__message__header {
+    font-family: 'Bebas Neue';
+    line-height: 40px;
+    font-size: 25px;
+}
+
+.ms-Button {
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+    font-weight: normal;
+}
+
+/*.root-195 {
+    background-color: #009CDC !important;
+    border-color: #009CDC !important;
+}*/
+
+/*.field-167 {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 5px;
+}*/
+
+.ms-Label {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 400;
+}
+
+/*.title-214 {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+    background: #eaebeb !important;
+    border: #eaebeb !important;
+    padding-top: 3px;
+}*/
+/*.css-262 {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+    background: #eaebeb !important;
+    border: #eaebeb !important;
+    padding-top: 3px;
+}*/
+.ms-Dropdown-title {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+    background: #eaebeb !important;
+    border: #eaebeb !important;
+    padding-top: 3px;
+}
+
+.ms-TextField-field {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    /*font-weight: 500;
+    font-size: 16px;
+    background: #eaebeb !important;
+    border: #eaebeb !important;*/
+
+    background: #FFFFFF;
+    border: 1px solid #CFD2D9;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 48px;
+}
+
+.ms-TextField {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+}
+
+.ms-Dropdown-optionText {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.ms-TextField-fieldGroup {
+background: #eaebeb !important;
+border: #eaebeb !important;
+}
+
+.dropdownOptionText-189 {
+    font-family: 'Roboto';
+    color: #474d4f !important;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/*.css-122 {
+    padding-right: 5px;
+}
+
+.css-44 {
+    font-size: 17px;
+    padding: 10px;
+}*/
+
+.wrapper {
+    background: #F5F7FA;
+}
+
+.container-fluid {
+    background: #F5F7FA;
+}
+.search {
+    margin-bottom: 30px;
+}
+
+.jumbotron {
+    background-color: #fff;
+    border: solid;
+    border-color: #E2E5EC !important;
+    border-width: 1px;
+    border-radius: 6px;
+   /* height: 120px;
+    padding-top: 20px;*/
+}
+
+h1 {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 29px;
+    color: #000000;
+}
+
+.desc {
+    font-family: 'Roboto';
+    font-weight: 400;
+    color: #7D7D7D;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+.btn-primary {
+    font-family: 'Roboto';
+    color: #fff;
+    background-color: #0085FF;
+    border-color: #0085FF;
+    max-width: 300px;
+    height: 48px;
+
+}
+
+.header-amounts {
+    background: #fff;
+}
+
+.services-header {
+    margin-top: 100px;
+}
