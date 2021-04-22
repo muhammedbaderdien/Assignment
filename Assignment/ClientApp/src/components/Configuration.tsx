@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+
+import { TextField } from '@fluentui/react';
 import { IImageStyles, ImageFit, Image, Stack } from '@fluentui/react';
 import DisplayNameField from './DisplayNameField';
 import {
@@ -6,7 +8,10 @@ import {
   localSettingsContainerStyle,
   mainContainerStyle,
   fullScreenStyle,
-  verticalStackStyle
+  verticalStackStyle,
+  inputBoxTextStyle,
+  inputBoxStyle,
+  labelFontStyle
 } from './styles/Configuration.styles';
 
 
@@ -25,14 +30,41 @@ export const imgMenuStyles: Partial<IImageStyles> = {
 
 export interface ConfigurationScreenProps {
   setDisplayName(displayName: string): void;
+  onNameTextChange(name: string): void;
   screenWidth: number;
   data: any;
   setServices(services: any): void;
-    services: any;
+  services: any;
 }
 
 export default (props: ConfigurationScreenProps): JSX.Element => {
+    
+    const onNameTextChange = (event: any) => {
 
+        setMsg((event.target as HTMLInputElement).value); 
+
+        const fetchData = async () => {
+            var keyword = (event.target as HTMLInputElement).value;
+            if (keyword === '') {
+                keyword = '*';
+            }
+
+            console.log('onNameTextChange - keyword', keyword);
+            var retrievedServices = await getServices(keyword);
+
+            console.log('onNameTextChange - retrievedServices', retrievedServices);
+            if (retrievedServices !== undefined) {
+
+                setServices(retrievedServices);
+		  }
+        };
+        fetchData();
+        if (event.target.value) {
+            //props.setEmptyWarning(false);
+        } else {
+            //props.setEmptyWarning(true);
+        }
+    };
     const imageProps = {
         src: staticMediaSVG.toString(),
         imageFit: ImageFit.center
@@ -45,21 +77,35 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
 
 
     const [name, setName] = useState('');
+    const [msg, setMsg] = useState("");
     const [services, setServices] = useState<any[]>([]);
     var data = [{ "name": "Siteconstructor.io" }, { "name": "Appvision.com" }, { "name": "Analytics.com" }, { "name": "Logotype" }];
+    const TextFieldStyleProps = {
+        wrapper: {
+            height: '2.3rem'
+        },
+        fieldGroup: {
+            height: '2.3rem'
+        }
+    };
+
 
     useEffect(() => {
-        
-        const fetchData = async () => {
-            var services = await getServices('All');
-            console.log('services', services);
-            if (services !== undefined) {
-                setServices(services);
-            }
-        };
-        fetchData();
+        console.log(msg); // Now you will get updated value every time.
+        console.log('services',services);
+        if (services.length == 0 && msg === "") {
+            const fetchData = async () => {
+                var retrievedServices = await getServices('*');
+                console.log('retrievedServices', retrievedServices);
+                if (retrievedServices !== undefined) {
+                    setServices(retrievedServices);
+                }
+            };
+            fetchData();
+	   }
     }, [data, services, setServices]);
 
+    
   return (
     <Stack className={mainContainerStyle} horizontalAlign="center" verticalAlign="center">
       
@@ -103,8 +149,22 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
                             <div className="col-lg-12 services-header">
                                 <h1 className="display-4">{'Services'}</h1>
                             </div>
-                          <div className="search">
-                                <DisplayNameField setName={setName} name={name} placeHolder={''} labelName={'FILTER'}  />
+                              <div className="search">
+
+                                  
+                                  <div className={labelFontStyle}>{'FILTER'}</div>
+                                  <TextField
+                                      autoComplete="off"
+                                      inputClassName={inputBoxTextStyle}
+                                      ariaLabel="Search Services"
+                                      borderless={true}
+                                      className={inputBoxStyle}
+                                      onChange={onNameTextChange}
+                                      id="search"
+                                      placeholder={''}
+                                      defaultValue={name}
+                                      styles={TextFieldStyleProps}
+                                  />
                           </div>
                             {services.map(function (d, idx) {
                                 //return (<li key={idx}>{d.name}</li>)

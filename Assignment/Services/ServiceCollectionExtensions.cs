@@ -17,7 +17,7 @@ namespace Calling
             serviceCollection.AddSingleton<IUserTokenManager, UserTokenManager>();
 
             // This is purely for the handshake server
-            serviceCollection.AddSingleton<IChatAdminThreadStore, InMemoryChatAdminThreadStore>();
+            serviceCollection.AddSingleton<IStore, InMemoryStore>();
             return serviceCollection;
         }
 

@@ -1,6 +1,4 @@
-﻿// © Microsoft Corporation. All rights reserved.
-
-namespace Calling
+﻿namespace Calling
 {
 	public class ServicesModel
 	{

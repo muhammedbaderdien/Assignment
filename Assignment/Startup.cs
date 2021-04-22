@@ -24,7 +24,7 @@ namespace Calling
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IUserTokenManager, UserTokenManager>();
-            services.AddSingleton<IChatAdminThreadStore, InMemoryChatAdminThreadStore>();
+            services.AddSingleton<IStore, InMemoryStore>();
 
             // Allow CORS as our client may be hosted on a different domain.
             services.AddCors(options =>

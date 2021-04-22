@@ -30,7 +30,8 @@ const TextFieldStyleProps = {
 };
 
 export default (props: DisplayNameFieldProps): JSX.Element => {
-  const onNameTextChange = (event: any) => {
+    const onNameTextChange = (event: any) => {
+
     props.setName(event.target.value);
     if (event.target.value) {
       //props.setEmptyWarning(false);
@@ -42,6 +43,7 @@ export default (props: DisplayNameFieldProps): JSX.Element => {
   return (
     <div>
           <div className={labelFontStyle}>{props.labelName}</div>
+
       <TextField
         autoComplete="off"
         inputClassName={inputBoxTextStyle}
@@ -54,6 +56,8 @@ export default (props: DisplayNameFieldProps): JSX.Element => {
         defaultValue={props.name}
         styles={TextFieldStyleProps}
         onKeyDown={(ev) => {
+
+            console.log('onKeyDown - ev', ev);
             if (ev.which === 13) {
                 props.validateName();
             }
