@@ -4,9 +4,9 @@ import HomeScreen from '../components/HomeScreen';
 import { createThread } from '../core/sideEffects';
 
 const mapStateToProps = () => ({
-  createThreadHandler: () => {
-    createThread();
-  }
+    createThreadHandler: () => {
+	   createThread();
+    }
 });
 
 export default connect(mapStateToProps)(HomeScreen);

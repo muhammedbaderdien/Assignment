@@ -3,7 +3,7 @@ import ConfigurationScreen, { ConfigurationScreenProps } from '../components/Con
 import { setDisplayName, setServices } from '../core/actions/sdk';
 
 const mapStateToProps = (props: ConfigurationScreenProps) => ({
-  screenWidth: props.screenWidth,
+    screenWidth: props.screenWidth,
 });
 
 

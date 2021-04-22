@@ -10,32 +10,32 @@ initializeIcons();
 
 const store = createStore(applyMiddleware(thunk));
 const App = () => {
-  const [page, setPage] = useState('home');
-  const [screenWidth, setScreenWidth] = useState(0);
+    const [page, setPage] = useState('home');
+    const [screenWidth, setScreenWidth] = useState(0);
 
-  useEffect(() => {
-    const setWindowWidth = () => {
-      const width = typeof window !== 'undefined' ? window.innerWidth : 0;
-      setScreenWidth(width);
+    useEffect(() => {
+	   const setWindowWidth = () => {
+		  const width = typeof window !== 'undefined' ? window.innerWidth : 0;
+		  setScreenWidth(width);
+	   };
+	   setWindowWidth();
+	   window.addEventListener('resize', setWindowWidth);
+	   return () => window.removeEventListener('resize', setWindowWidth);
+    }, []);
+
+    const getContent = () => {
+	   return (
+		  <ConfigurationScreen
+			 screenWidth={screenWidth}
+		  />
+	   );
     };
-    setWindowWidth();
-    window.addEventListener('resize', setWindowWidth);
-    return () => window.removeEventListener('resize', setWindowWidth);
-  }, []);
 
-  const getContent = () => {
-      return (
-          <ConfigurationScreen
-              screenWidth={screenWidth}
-          />
-      );
-  };
+    if (page === 'home') {
+	   setPage('configuration');
+    }
 
-  if (page === 'home') {
-    setPage('configuration');
-  }
-
-  return <Provider store={store}>{getContent()}</Provider>;
+    return <Provider store={store}>{getContent()}</Provider>;
 };
 
 
