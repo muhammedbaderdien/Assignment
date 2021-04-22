@@ -9,5 +9,6 @@ namespace Calling
     {
 	   Dictionary<string, CommunicationUserToken> Store { get; }
 	   Dictionary<string, ContosoUserConfigModel> UseConfigStore { get; }
+	   Dictionary<string, ServicesModel> ServicesStore { get; }
     }
 }

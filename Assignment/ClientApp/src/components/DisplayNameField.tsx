@@ -8,7 +8,6 @@ import {
   labelFontStyle,
   warningStyle
 } from './styles/Configuration.styles';
-import { Constants } from '../core/constants';
 
 interface DisplayNameFieldProps {
   setName(name: string): void;
@@ -55,7 +54,7 @@ export default (props: DisplayNameFieldProps): JSX.Element => {
         defaultValue={props.name}
         styles={TextFieldStyleProps}
         onKeyDown={(ev) => {
-            if (ev.which === Constants.ENTER_KEY) {
+            if (ev.which === 13) {
                 props.validateName();
             }
         }}

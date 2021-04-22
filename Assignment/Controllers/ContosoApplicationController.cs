@@ -1,6 +1,8 @@
 ﻿// © Microsoft Corporation. All rights reserved.
 
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Calling
 {
@@ -39,6 +41,36 @@ namespace Calling
 	   public ContosoUserConfigModel GetUserConfiguration(string userId)
 	   {
 		  return _store.UseConfigStore[userId];
+	   }
+
+	   /// <summary>
+	   /// If the only user is the moderator, then we will try to remove the moderator and delete the thread
+	   /// </summary>
+	   /// <param name="serviceName"></param>
+	   /// <returns></returns>
+	   /// <remarks>Optional for client to send but it would be nice to clean up un-used chat threads</remarks>
+	   [Route("services/{serviceName}")]
+	   [HttpGet]
+	   public List<ServicesModel> GetServices(string serviceName)
+	   {
+		  List<ServicesModel> services = new List<ServicesModel>();
+		  services.Add(new ServicesModel()
+		  {
+			 name = "Siteconstructor.io - From API"
+		  });
+		  services.Add(new ServicesModel()
+		  {
+			 name = "Appvision.com - From API"
+		  });
+		  services.Add(new ServicesModel()
+		  {
+			 name = "Analytics.com - From API"
+		  });
+		  services.Add(new ServicesModel()
+		  {
+			 name = "Logotype - From API"
+		  });
+		  return services;
 	   }
     }
 }

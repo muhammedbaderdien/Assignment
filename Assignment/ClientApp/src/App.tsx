@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer } from './core/reducers';
 import thunk from 'redux-thunk';
 import ConfigurationScreen from './containers/Configuration';
 import { loadTheme, initializeIcons } from '@fluentui/react';
@@ -9,7 +8,7 @@ import { loadTheme, initializeIcons } from '@fluentui/react';
 loadTheme({});
 initializeIcons();
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(applyMiddleware(thunk));
 const App = () => {
   const [page, setPage] = useState('home');
   const [screenWidth, setScreenWidth] = useState(0);

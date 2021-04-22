@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IImageStyles, ImageFit, Image, Stack } from '@fluentui/react';
 import DisplayNameField from './DisplayNameField';
 import {
@@ -12,6 +12,8 @@ import {
 
 import staticMediaSVG from '../assets/logo.svg';
 import staticMenuMediaSVG from '../assets/menu.svg';
+import { getServices } from '../core/sideEffects';
+import { setServices } from '../core/actions/sdk';
 
 export const imgStyles: Partial<IImageStyles> = {
     root: { height: '10.5rem', top: '-22%', left: '9%' }
@@ -22,12 +24,15 @@ export const imgMenuStyles: Partial<IImageStyles> = {
 };
 
 export interface ConfigurationScreenProps {
-
   setDisplayName(displayName: string): void;
   screenWidth: number;
+  data: any;
+  setServices(services: any): void;
+    services: any;
 }
 
 export default (props: ConfigurationScreenProps): JSX.Element => {
+
     const imageProps = {
         src: staticMediaSVG.toString(),
         imageFit: ImageFit.center
@@ -36,10 +41,24 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
         src: staticMenuMediaSVG.toString(),
         imageFit: ImageFit.center
     };
-  const data = [{ "name": "Siteconstructor.io" }, { "name": "Appvision.com" }, { "name": "Analytics.com" }, { "name": "Logotype" }];
+    
 
 
-  const [name, setName] = useState('');
+    const [name, setName] = useState('');
+    const [services, setServices] = useState<any[]>([]);
+    var data = [{ "name": "Siteconstructor.io" }, { "name": "Appvision.com" }, { "name": "Analytics.com" }, { "name": "Logotype" }];
+
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            var services = await getServices('All');
+            console.log('services', services);
+            if (services !== undefined) {
+                setServices(services);
+            }
+        };
+        fetchData();
+    }, [data, services, setServices]);
 
   return (
     <Stack className={mainContainerStyle} horizontalAlign="center" verticalAlign="center">
@@ -59,22 +78,22 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
                       <div className="col-1 px-1 bg-dark position-fixed" id="sticky-sidebar">
                         <div className="nav flex-column flex-nowrap vh-100 overflow-auto text-white p-2">
                             <a href="#" className="navbar-brand">
-                              <Image className="nav-img" styles={imgStyles} {...imageProps} aria-label="Local video preview image" />
+                              <Image className="nav-img" styles={imgStyles} {...imageProps}  />
                             </a>
                             <a href="./" className="nav-link">
-                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps} aria-label="Local video preview image" />
+                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps}  />
                             </a>
                             <a href="./" className="nav-link">
-                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps} aria-label="Local video preview image" />
+                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps}  />
                             </a>
                             <a href="./" className="nav-link">
-                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps} aria-label="Local video preview image" />
+                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps}  />
                             </a>
                             <a href="./" className="nav-link">
-                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps} aria-label="Local video preview image" />
+                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps}  />
                             </a>
                             <a href="./" className="nav-link">
-                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps} aria-label="Local video preview image" />
+                                <Image className="nav-img" styles={imgMenuStyles} {...menuImageProps}  />
                             </a>
                         </div>
                       </div>
@@ -87,7 +106,7 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
                           <div className="search">
                                 <DisplayNameField setName={setName} name={name} placeHolder={''} labelName={'FILTER'}  />
                           </div>
-                            {data.map(function (d, idx) {
+                            {services.map(function (d, idx) {
                                 //return (<li key={idx}>{d.name}</li>)
                                 return (
                     
